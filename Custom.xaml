@@ -1,0 +1,549 @@
+﻿<!--欢迎页-->
+<local:MyCard Margin="0,-6,0,12" Title="欢迎"> <!--下面不是卡片，所以不用0,0,0,12-->
+     <StackPanel Margin="24,35,24,15">
+          <TextBlock HorizontalAlignment="Center" Margin="0,0,0,0"
+               Foreground="{DynamicResource ColorBrush2}" FontSize="20"
+               Text="欢迎使用!" />
+          <Calendar HorizontalAlignment="Center" Margin="0,12,0,10" />
+          <!--“你知道吗”在启动游戏的时候会出现，所以我只在这里设置了回声洞-->
+          <TextBlock Margin="5,0,5,12" TextWrapping="Wrap" HorizontalAlignment="Center"
+               Foreground="{DynamicResource ColorBrush1}" Text="{cave}" />
+     </StackPanel>
+</local:MyCard>
+
+
+<!-- Dock (大概可以这么称呼吧) -->
+<local:MyCard Margin="0,0,0,8">
+     <StackPanel Margin="24,6,24,12">
+          <Grid>
+               <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+               </Grid.ColumnDefinitions>
+               
+               <local:MyIconTextButton Margin="0,5,0,6" Height="35" HorizontalAlignment="Center"
+                    Text="刷新主页" EventType="刷新主页" Grid.Column="1"
+                    LogoScale="0.8" ColorType="Highlight"
+                    Logo="M256.455,8C322.724,8.119,382.892,34.233,427.314,76.685L463.029,40.97C478.149,25.851,504,36.559,504,57.941L504,192C504,205.255,493.255,216,480,216L345.941,216C324.559,216,313.851,190.149,328.97,175.029L370.72,133.279C339.856,104.38 299.919,88.372 257.49,88.006 165.092,87.208 87.207,161.983 88.0059999999999,257.448 88.764,348.009 162.184,424 256,424 297.127,424 335.997,409.322 366.629,382.444 371.372,378.283 378.535,378.536 382.997,382.997L422.659,422.659C427.531,427.531 427.29,435.474 422.177,440.092 378.202,479.813 319.926,504 256,504 119.034,504 8.001,392.967 8,256.002 7.999,119.193 119.646,7.755 256.455,8z" />
+          </Grid>
+          <local:MyListItem Margin="-2,0,2,0"
+               Logo="pack://application:,,,/images/blocks/GoldBlock.png"
+               Title="今日人品"
+               Info="试试手气！"
+               EventType="今日人品"
+               Type="Clickable" />
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="pack://application:,,,/images/blocks/Grass.png"
+               Title="启动基岩版"
+               Info="以 URL Scheme 的方式启动电脑上的 MC 基岩版。"
+               EventType="打开网页"
+               EventData="minecraft://"
+               Type="Clickable" />
+              </StackPanel>
+</local:MyCard>
+<!--工具-->
+<Grid Margin="0,0,0,8">
+     <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*" />
+          <ColumnDefinition Width="80" />
+          <ColumnDefinition Width="1*" />
+     </Grid.ColumnDefinitions>
+     <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush3}" StrokeThickness="1.5"
+          Stretch="Fill" Grid.Column="0" />
+     <TextBlock Text="工具" FontSize="15" Foreground="{DynamicResource ColorBrush4}" Grid.Column="1"
+          VerticalAlignment="Center" HorizontalAlignment="Center" />
+     <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush3}" StrokeThickness="1.5"
+          Stretch="Fill" Grid.Column="2" />
+</Grid>
+<local:MyCard Margin="0,0,0,12" Title="启动器工具" CanSwap="True" IsSwaped="True">
+     <StackPanel Margin="24,40,24,15">
+          <local:MyHint IsWarn="False" Text="此处所有功能均为启动器自带，出问题请上报至 PCL2 仓库。" Margin="0,0,0,10" />
+          <Grid>
+               <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+               </Grid.ColumnDefinitions>
+               <local:MyButton Grid.Column="0" Margin="0,0,10,0" Height="35" Text="打开 PCL 日志"
+                    EventType="打开文件" EventData="Log1.txt" ToolTip="查看当前 PCL 启动器的日志文件。" />
+               <local:MyButton Grid.Column="1" Margin="0,0,0,0" Height="35" Text="清理垃圾"
+                    EventType="清理垃圾" ToolTip="清理垃圾文件。" />
+          </Grid>
+          <Grid>
+               <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+               </Grid.ColumnDefinitions>
+               <local:MyButton Grid.Column="0" Margin="0,10,10,0" Height="35" Text="内存优化"
+                    EventType="内存优化"
+                    ToolTip="将物理内存占用降低约 1/3 ，不仅限于 MC ！&#xA;如果使用机械硬盘，这可能会导致一小段时间的严重卡顿。" />
+               <local:MyButton Grid.Column="1" Margin="0,10,0,0" Height="35" Text="定位游戏启动脚本"
+                    EventType="打开文件" EventData="explorer.exe|/select,LatestLaunch.bat"
+                    ToolTip="打开 PCL 上一次启动 MC 的脚本 (LatestLaunch.bat) 。" />
+          </Grid>
+     </StackPanel>
+</local:MyCard>
+<local:MyCard Margin="0,0,0,8" Title="下载器" CanSwap="True" IsSwaped="True">
+     <StackPanel Margin="24,40,24,15">
+          <local:MyHint Margin="0,0,0,10" IsWarn="False"
+               Text="使用 PCL 的高速多线程下载引擎下载任意文件。请注意，部分网站 (例如百度网盘) 可能会报错 (403) 已禁止，无法正常下载。" />
+          <local:MyHint Margin="0,0,0,10" IsWarn="True"
+               Text="链接必须为以 http:// 或 https:// 开头的网址，部分网址可能无法下载。" />
+          <Grid>
+               <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+               </Grid.ColumnDefinitions>
+               <local:MyTextBox HintText="下载链接：" Margin="0,0,0,0" Name="web" Height="30"
+                    Grid.Column="0" ToolTip="在此输入下载链接，点击右边按钮下载自定义文件。&#xA;注意不要按下 Enter 键，这会直接启动游戏。" />
+               <local:MyButton EventType="下载文件" EventData="{Binding ElementName=web,Path=Text}"
+                    Text="开始下载→" Margin="5,0,0,0" Height="30" Grid.Column="2" Padding="2,0,2,0"
+                    ColorType="Highlight" />
+          </Grid>
+     </StackPanel>
+</local:MyCard>
+
+<!--其它-->
+<Grid Margin="0,0,0,8">
+     <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*" />
+          <ColumnDefinition Width="80" />
+          <ColumnDefinition Width="1*" />
+     </Grid.ColumnDefinitions>
+     <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush3}" StrokeThickness="1.5"
+          Stretch="Fill" Grid.Column="0" />
+     <TextBlock Text="其它" FontSize="15" Foreground="{DynamicResource ColorBrush4}" Grid.Column="1"
+          VerticalAlignment="Center" HorizontalAlignment="Center" />
+     <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush3}" StrokeThickness="1.5"
+          Stretch="Fill" Grid.Column="2" />
+</Grid>
+<local:MyCard Margin="0,0,0,12" Title="minecraft新闻" CanSwap="True" IsSwaped="True">
+     <StackPanel Margin="24,40,24,15">
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="pack://application:,,,/images/blocks/Grass.png" Title="java新闻"
+               Info="java版游戏新闻" EventType="打开帮助" EventData="https://news.bugjump.net/News.json"
+               Type="Clickable" />
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="https://www.mcbedrock.com/wp-content/uploads/2020/09/logo3-1-1-1.png" Title="minecraft基岩版新闻"
+               Info="基岩版游戏新闻" EventType="打开网页"
+               EventData="https://www.mcbedrock.com/category/bedrock-news/"
+               Type="Clickable" />
+     </StackPanel>
+</local:MyCard>
+<local:MyCard Title="关于" Margin="0,0,0,15" CanSwap="True">
+    <StackPanel Margin="25,40,23,11">
+	    <TextBlock Margin="0,0,0,4" LineHeight="17" TextWrapping="Wrap"
+                   Text="欢迎使用 PCL 新功能说明书，本主页将为您提供当前版本 PCL 的主要更新内容及使用方法。" />
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <local:MyButton MinWidth="160" Height="35" Padding="13,0" Margin="0,4,20,8" ColorType="Highlight"
+                        Text="下载 PCL 最新正式版" EventType="打开网页" EventData="https://afdian.com/p/0164034c016c11ebafcb52540025c377" />
+                   </StackPanel>
+    </StackPanel>
+</local:MyCard>
+
+<local:MyCard Title="社区资源下载拓展与资源下载优化" Margin="0,0,0,15" CanSwap="True" IsSwaped="True">
+    <StackPanel Margin="25,40,23,11">
+        <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17" FontWeight="Bold"
+                Text="支持版本：2.10.0 及以上" />
+		<TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                Text="PCL 现已支持安装资源包、光影包、数据包等社区资源。你可以在 “下载 → 社区资源” 中安装之。" />
+        <!--等待帮助库更新
+        <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                Text="PCL 现已支持安装资源包、光影包、数据包等社区资源。详细操作步骤可以参考帮助库的描述：" />
+        <local:MyListItem Margin="0,0,0,12" SnapsToDevicePixels="True" Type="Clickable"
+		        EventType="打开帮助" EventData="Minecraft/资源包安装.json" />
+        <local:MyListItem Margin="0,0,0,12" SnapsToDevicePixels="True" Type="Clickable"
+		        EventType="打开帮助" EventData="Minecraft/安装光影.json" />
+        <local:MyListItem Margin="0,0,0,12" SnapsToDevicePixels="True" Type="Clickable"
+		        EventType="打开帮助" EventData="Minecraft/数据包安装.json" />
+        -->
+        <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                Text="同时，PCL 现已支持手动设置文件下载源。你可以在 “设置 → 其他 → 下载 → 文件下载源” 处进行设置。" />
+    </StackPanel>
+
+</local:MyCard>
+
+<local:MyCard Title="整合包导出与导入的综合优化" Margin="0,0,0,15" CanSwap="True" IsSwaped="True">
+    <StackPanel Margin="25,40,23,11">
+	    <TextBlock Margin="0,0,0,7" FontSize="15" Foreground="{DynamicResource ColorBrush2}"
+                    Text="整合包导出功能支持" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17" FontWeight="Bold"
+                        Text="支持版本：2.9.0 及以上" />
+		    <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="PCL 现已支持整合包导出，可以以极其方便的操作导出整合包并分发！详细操作步骤可以参考帮助库的描述：" />
+            <local:MyListItem Margin="0,0,0,12" SnapsToDevicePixels="True" Type="Clickable"
+		                EventType="打开帮助" EventData="Minecraft/导出整合包.json" />
+        <TextBlock Margin="0,12,0,7" FontSize="15" Foreground="{DynamicResource ColorBrush2}"
+                    Text="整合包导入综合优化" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17" FontWeight="Bold"
+                        Text="支持版本：2.8.4 及以上；2.8.10 及以上" />
+		    <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="在启动 PCL 时，现在支持自动安装与 PCL 处于同级文件夹的整合包了。" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="在导入压缩文件包时，会自动换用被打包的启动器进行后续安装。&#xa;因此，玩家即使用自己的 PCL 导入整合包，也能看到设置的背景图片、主页和音乐。" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="下图是目前最推荐的懒人包分发格式：" />
+            <Image HorizontalAlignment="Center" 
+					Source="https://i0.hdslb.com/bfs/article/91410d326cfb2be867802eabc3dc557511343203.png"/>
+    </StackPanel>
+</local:MyCard>
+
+<local:MyCard Title="Mod 详情与管理优化" Margin="0,0,0,15" CanSwap="True" IsSwaped="True">
+    <StackPanel Margin="25,40,23,11">
+	    <TextBlock Margin="0,0,0,7" FontSize="15" Foreground="{DynamicResource ColorBrush2}"
+                    Text="Mod 详情页面优化" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17" FontWeight="Bold"
+                        Text="支持版本：2.8.5 及以上；2.8.11 及以上" />
+		    <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="现在 Mod 详情页面会按 Mod 加载器分类卡片，且添加了 MC 版本筛选。" />
+		    <Image HorizontalAlignment="Center" 
+					    Source="https://z4a.net/images/2024/12/13/ModDetails2.jpg"/>
+        <TextBlock Margin="0,12,0,7" FontSize="15" Foreground="{DynamicResource ColorBrush2}"
+                    Text="Mod 管理页面优化" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17" FontWeight="Bold"
+                        Text="支持版本：2.8.5 及以上" />
+		    <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="现 PCL 已支持筛选可更新/启用/禁用的 Mod。你可以在任意一个装有 Mod 的版本中预览到全新的筛选选项：" />
+		    <Image HorizontalAlignment="Center" 
+					    Source="https://z4a.net/images/2024/10/05/NewModManagementeb8faa8e6a8324d3.png"/>
+    </StackPanel>
+</local:MyCard>
+
+<local:MyCard Title="其他较早版本的更新……" Margin="0,0,0,15" CanSwap="True" IsSwaped="True">
+    <StackPanel Margin="25,40,23,11">
+	    <TextBlock Margin="0,0,0,7" FontSize="15" Foreground="{DynamicResource ColorBrush2}"
+                    Text="NeoForge 兼容与自动安装" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17" FontWeight="Bold"
+                        Text="支持版本：2.8.0 及以上" />
+		    <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="PCL 现已支持 NeoForge 的识别与下载安装，你可以在 “下载 → 自动安装” 中选择一个版本来安装之。详细操作步骤可以参考帮助库的描述：" />
+		    <local:MyListItem Margin="0,0,0,12" SnapsToDevicePixels="True" Type="Clickable"
+		                EventType="打开帮助" EventData="Minecraft/安装 Mod.json" />
+        <TextBlock Margin="0,12,0,7" FontSize="15" Foreground="{DynamicResource ColorBrush2}"
+                    Text="支持下载原版服务端" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17" FontWeight="Bold"
+                        Text="支持版本：2.8.9 及以上" />
+		    <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="PCL 现已支持下载原版服务端，你可以在 “下载 → 自动安装” 中，将鼠标指针悬浮于任意版本上方，点击右侧 “下载服务端” 图标即可下载。" />
+            <Image HorizontalAlignment="Center" 
+					    Source="https://z4a.net/images/2024/10/19/PCLServerDownload.png"/>
+        <TextBlock Margin="0,12,0,7" FontSize="15" Foreground="{DynamicResource ColorBrush2}"
+                    Text="使用新的正版登录方式" />
+            <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17" FontWeight="Bold"
+                        Text="支持版本：2.8.7 及以上" />
+		    <TextBlock Margin="0,0,0,4" TextWrapping="Wrap" LineHeight="17"
+                        Text="现 PCL 采用了全新的登录方式。在登录游戏帐户时，可以遵循以下操作步骤：" />
+		    <TextBlock Margin="2,0,0,4" LineHeight="17" TextWrapping="Wrap"
+                        Text="1. 在 PCL 弹出的弹窗中点击 “复制代码”。" />
+		    <TextBlock Margin="2,0,0,4" LineHeight="17" TextWrapping="Wrap"
+                        Text="2. 将复制好的代码粘贴至 PCL 刚刚打开的网页中，点击网页中的 “允许访问” 按钮。" />
+		    <TextBlock Margin="2,0,0,4" LineHeight="17" TextWrapping="Wrap"
+                        Text="3. 输入你的密码，并点击 “确定”。" />
+		    <TextBlock Margin="2,0,0,4" LineHeight="17" TextWrapping="Wrap"
+                        Text="4. 在 “是否允许此应用访问你的信息？” 网页中点击 “接受”，即可回到 PCL 并完成登录。" />
+    </StackPanel>
+</local:MyCard>
+
+<local:MyCard Title="更多……" Margin="0,0,0,15" CanSwap="False">
+    <StackPanel Margin="25,40,23,11">
+        <TextBlock Margin="0,0,0,4" LineHeight="17" TextWrapping="Wrap" 
+                   Text="可以通过下面这个链接反馈pcl启动器的问题" />
+        <local:MyButton Width="300" Height="35" Padding="13,0" Margin="0,4,20,8" ColorType="Highlight"
+                    Text="PCL GitHub 仓库 lssues 页面" EventType="打开网页" EventData="https://github.com/Meloong-Git/PCL/issues" />
+		<TextBlock Margin="0,10,0,4" LineHeight="17" TextWrapping="Wrap" 
+                   Text="minecraft官方bug反馈平台" />
+        <local:MyButton Width="300" Height="35" Padding="13,0" Margin="0,4,20,8"
+                    Text="minecraft bug" EventType="打开网页" EventData="https://feedback.minecraft.net/hc/en-us?" />
+    </StackPanel>
+</local:MyCard>
+<!-- 网页捷径 | urlshortcut -->
+<!-- Version: r0.0.1  -->
+<local:MyCard Margin="0,0,0,12">
+    <StackPanel Margin="24,12,24,10">
+        <Grid Margin="0,8,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush3}" StrokeThickness="1.5"
+                Stretch="Fill"
+                Grid.Column="0" />
+            <TextBlock Text="网页捷径" FontSize="18" Foreground="{DynamicResource ColorBrush4}"
+                Grid.Column="1" Margin="0,0,0,4"
+                VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Line X1="0" X2="100" Stroke="{DynamicResource ColorBrush3}" StrokeThickness="1.5"
+                Stretch="Fill"
+                Grid.Column="2" />
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <local:MyTextBox HintText="在此输入网页链接…" Margin="0,0,0,10" Name="site" Height="30"
+                Grid.Column="0"
+                ToolTip="在此输入链接，点击右边按钮打开自定义网页。&#xA;注意不要按下 Enter 键，这可能会直接启动游戏。"
+                Text="https://www.4399.com" />
+            <local:MyButton EventType="打开网页" EventData="{Binding ElementName=site,Path=Text}"
+                Text="打开网页→"
+                Margin="5,0,0,10" Height="30" Grid.Column="1" ToolTip="点我打开" Padding="2,0,2,0"
+                ColorType="Highlight" />
+        </Grid>
+    </StackPanel>
+       </local:MyCard>
+<local:MyCard Margin="0,0,0,12" Title="常用网站" CanSwap="True" IsSwaped="False">
+    <StackPanel Margin="24,40,24,15">
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://www.baidu.com/favicon.ico"
+            Title="百度"
+            Info="百度一下，你就知道"
+            EventType="打开网页"
+            EventData="https://www.baidu.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-1024.png"
+            Title="Google"
+            Info="Google搜索需要VPN"
+            EventType="打开网页"
+            EventData="https://www.google.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://static.hdslb.com/images/favicon.ico"
+            Title="Bilibili"
+            Info="哔哩哔哩 (゜-゜)つロ 干杯~"
+            EventType="打开网页"
+            EventData="https://www.bilibili.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://ts3.tc.mm.bing.net/th/id/OIP-C.0MzNaFevMaktMCVgdaoU_AAAAA"
+            Title="Youtube"
+            Info="Youtube搜索需要VPN"
+            EventType="打开网页"
+            EventData="https://www.youtube.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://ts1.tc.mm.bing.net/th/id/OIP-C.T76Nq1OkVWpkNHzTYQs1ogHaG9"
+            Title="ChatGPT"
+            Info="ChatGPT搜索需要VPN"
+            EventType="打开网页"
+            EventData="https://chatgpt.com"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://img.phb123.com/uploads/allimg/231118/806-23111Q645000-L.png"
+            Title="豆包ai"
+            Info="豆包ai搜索"
+            EventType="打开网页"
+            EventData="https://www.doubao.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://github.githubassets.com/favicon.ico"
+            Title="GitHub"
+            Info="Let's build from here"
+            EventType="打开网页"
+            EventData="https://github.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://tse3.mm.bing.net/th/id/OIP.iZelk69s5_3J0a3uMT1tBwAAAA"
+            Title="Gitee （码云）"
+            Info="基于 Git 的代码托管和研发协作平台"
+            EventType="打开网页"
+            EventData="https://gitee.com/"
+            Type="Clickable" />
+
+    </StackPanel>
+</local:MyCard>
+<local:MyCard Margin="0,0,0,12" Title="Minecraft 官方" CanSwap="True" IsSwaped="True">
+    <StackPanel Margin="24,40,24,15">
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="pack://application:,,,/images/Blocks/Grass.png"
+            Title="Minecraft 官网"
+            Info="Minecraft 国际官网"
+            EventType="打开网页"
+            EventData="https://www.minecraft.net"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="pack://application:,,,/images/Blocks/GrassPath.png"
+            Title="网易我的世界官网"
+            Info="Minecraft 中国版官网"
+            EventType="打开网页"
+            EventData="https://mc.163.com/"
+            Type="Clickable" />
+    </StackPanel>
+</local:MyCard>
+<local:MyCard Margin="0,0,0,12" Title="Minecraft 服务器核心" CanSwap="True" IsSwaped="True">
+    <StackPanel Margin="24,40,24,15">
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://papermc.io/favicon.ico"
+            Title="Paper"
+            Info="较为知名的服务端核心,许多服务器使用此服务端核心,但你或许可以试试下面的核心"
+            EventType="打开网页"
+            EventData="https://papermc.io/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://purpurmc.org/docs/images/purpur-small.png"
+            Title="Purpur"
+            Info="Purpur 是 Paper 服务的直接替代品,旨在实现可&#xa;配置性和新颖、有趣、令人兴奋的游戏玩法特征"
+            EventType="打开网页"
+            EventData="https://purpurmc.org/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://ts1.tc.mm.bing.net/th/id/OIP-C.UW9gwGbn6GLw2APQvb8LIAAAAA?"
+            Title="Mohist"
+            Info="Mohist 是一个兼容 Bukkit、Spigot 和 Paper API 的 Forge 服务&#xa;器软件,这个项目是为了让模组和插件一起使用而制作的"
+            EventType="打开网页"
+            EventData="https://mohistmc.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://ts3.tc.mm.bing.net/th/id/OIP-C.jKbZrRKAqVUwm1ezFPOrwQAAAA?"
+            Title="PocketMine"
+            Info="基岩版核心,可加插件,但原版特性不完整，配置较为繁琐"
+            EventType="打开网页"
+            EventData="https://pmmp.io/"
+            Type="Clickable" /> 
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://pic.616pic.com/ys_img/00/52/42/a9MDogkg0E.jpg"
+            Title="NukkitX"
+            Info="基岩版核心,可加插件,但原版特性不完整,配置较为繁琐"
+            EventType="打开网页"
+            EventData="https://cloudburstmc.org/articles/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Logo="https://ts4.tc.mm.bing.net/th/id/OIP-C.N3J4YbWqN7T77m043T4UNgAAAA?"
+            Title=" LeavesMC"
+            Info="基于 Paper 的专为生电设计的核心,只支持最新版本"
+            EventType="打开网页"
+            EventData="https://leavesmc.org/"
+            Type="Clickable" />
+
+    </StackPanel>
+</local:MyCard>
+<local:MyCard Margin="0,0,0,12" Title="Minecraft 国内" CanSwap="True" IsSwaped="True">
+    <StackPanel Margin="24,40,24,15">
+        <!--
+               <local:MyListItem Margin="-2,0,0,0" Logo="pack://application:,,,/images/Blocks/GrassPath.png"
+                Title="MCBBS" Info="最大的我的世界《Minecraft》中文论坛" EventType="打开网页"
+                EventData="https://www.mcbbs.net" Type="Clickable" />
+            R.I.P.
+          -->
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="中文 Minecraft Wiki"
+            Info="中文 Minecraft 百科"
+            EventType="打开网页"
+            EventData="https://zh.minecraft.wiki/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="MCMOD 百科"
+            Info="中文 Minecraft Mod 百科"
+            EventType="打开网页"
+            EventData="https://www.mcmod.cn/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="MC 导航网"
+            Info="国内 Minecraft 相关页面导航站"
+            EventType="打开网页"
+            EventData="https://www.mcnav.net/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="SodaMC"
+            Info="国内 Minecraft 综合类论坛"
+            EventType="打开网页"
+            EventData="https://sodamc.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="我的世界中文下载站"
+            Info="国内 Minecraft 综合资源下载站"
+            EventType="打开网页"
+            EventData="https://minecraftxz.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="苦力怕 BBS"
+            Info="国内 Minecraft 基岩版为主的综合类论坛"
+            EventType="打开网页"
+            EventData="https://klpbbs.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="MineBBS"
+            Info="国内 Minecraft 基岩版为主的综合类论坛"
+            EventType="打开网页"
+            EventData="https://www.minebbs.com/"
+            Type="Clickable" />
+    </StackPanel>
+</local:MyCard>
+<local:MyCard Margin="0,0,0,8" Title="Minecraft 国外" CanSwap="True" IsSwaped="True">
+    <StackPanel Margin="24,40,24,15">
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="En Minecraft Wiki"
+            Info="英文 Minecraft 百科分站"
+            EventType="打开网页"
+            EventData="https://minecraft.wiki/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="Minecraft Forum"
+            Info="国外 Minecraft 综合类论坛"
+            EventType="打开网页"
+            EventData="https://www.minecraftforum.net/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="MCArchive"
+            Info="国外 Minecraft Mod 归档/保护/下载"
+            EventType="打开网页"
+            EventData="https://github.com/MCArchive/MCArchive"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="Curseforge"
+            Info="国外 Minecraft 综合资源下载站"
+            EventType="打开网页"
+            EventData="https://www.curseforge.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="Modrinth"
+            Info="国外 Minecraft 综合资源下载站"
+            EventType="打开网页"
+            EventData="https://modrinth.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="Planet Minecraft"
+            Info="国外 Minecraft 综合类论坛"
+            EventType="打开网页"
+            EventData="https://www.planetminecraft.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="MCPEDL"
+            Info="国外 Minecraft 基岩版 Mod/地图/资源包 下载站"
+            EventType="打开网页"
+            EventData="https://mcpedl.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="MCDLSpot"
+            Info="国外 Minecraft 基岩版 游戏下载/Mods/皮肤/教程"
+            EventType="打开网页"
+            EventData="https://mcdlspot.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="NameMC"
+            Info="国外 Minecraft 玩家用户名与皮肤收录"
+            EventType="打开网页"
+            EventData="https://namemc.com/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="LittleSkin"
+            Info="快速、可靠的公益 Minecraft 皮肤站"
+            EventType="打开网页"
+            EventData="https://littleskin.cn/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="MC Tools"
+            Info="实用网站,可惜没有中文&#xA;可以自定义超多东西"
+            EventType="打开网页"
+            EventData="https://minecraft.tools/en/"
+            Type="Clickable" />
+        <local:MyListItem Margin="-2,0,0,0"
+            Title="Chunkbase"
+            Info="能够查询关于种子的各种信息,群系分布、史莱姆区块等"
+            EventType="打开网页"
+            EventData="https://www.chunkbase.com/apps/"
+            Type="Clickable" />
+    </StackPanel>
+</local:MyCard>
+
+ 
